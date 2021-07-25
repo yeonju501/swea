@@ -1,2 +1,2 @@
 n = int(input())
-print('#' * i)
+print('#' * n)

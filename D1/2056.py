@@ -1,6 +1,6 @@
 T = int(input())
 date = []
-for i in range(T):
+for i in range(T): 
     date.append(input())
 for i in range(len(date)):
     y = int(date[i][:4])
