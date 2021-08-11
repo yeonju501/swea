@@ -13,11 +13,11 @@ for tc in range(1, T+1):
             print()
     if M == 2:
         for i in range(1, N+1):
-            if i <= N//2 + 1:
-                print(' '*(N-i), end='')
+            if i <= (N//2 + 1):
+                print(' '*((N//2+1)-i), end='')
                 print('*'*i, end='')
             else:
-                print(' '*(i-1), end='')
+                print(' '*(i-(N//2+1)), end='')
                 print('*'*(N-i+1), end='')
             print()
     if M == 3:
