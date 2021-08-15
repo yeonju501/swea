@@ -3,19 +3,23 @@
 # 시스템...
 t = s = 0
 smp, sst = map(int, input().split())
-for i in range(smp+sst):
+for i in range(smp):
     ans, rst = map(int, input().split())
-    if i < smp and ans != rst:
+    if ans == rst:
         t += 1
-    elif i >= sst and ans != rst:
+
+for i in range(sst):
+    ans, rst = map(int, input().split())
+    if ans == rst:
         s += 1
-if t:
-    print('Wrong Answer')
-elif s:
-    print('Why Wrong!!!')
-else:
+
+if t == smp and s == sst:
     print('Accepted')
-    
+elif t != smp:
+    print('Wrong Answer')
+else:
+    print('Why Wrong!!!')
+
 
 
 
