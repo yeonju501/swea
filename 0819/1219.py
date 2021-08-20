@@ -1,6 +1,5 @@
 import sys
-sys.stdin = open('11872_input.txt')
-
+sys.stdin = open('1219_input.txt')
 
 def dfs(v, ns):
     # 방문체크
@@ -8,32 +7,26 @@ def dfs(v, ns):
     ns.append(v)
 
 
-    for w in range(1, V+1):
+    for w in range(0, 100):
         # 인접하고 방문 안한 정점
         if adj[v][w] == 1 and visited[w] == 0:
             dfs(w, ns)
 
 
-T = int(input())
-for tc in range(1, T+1):
+for tc in range(1, 11):
 
     V, E = map(int, input().split())
 
-    adj = [[0] * (V+1) for _ in range(V+1)]
+    adj = [[0] * 100 for _ in range(100)]
 
-    visited = [0] * (V+1)
-
-
-    edges = []
+    visited = [0] * 100
+    edges = list(map(int, input().split()))
     for i in range(E):
-        a, b = map(int, input().split())
-        edges.extend([a, b])
         s, e = edges[2*i], edges[2*i+1]
         adj[s][e] = 1
-    l, n = map(int, input().split())
     ns = []
-    dfs(l, ns)
-    if n in ns:
+    dfs(0, ns)
+    if 99 in ns:
         print('#{} 1'.format(tc))
     else:
         print('#{} 0'.format(tc))

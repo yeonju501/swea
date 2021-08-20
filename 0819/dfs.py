@@ -26,7 +26,6 @@ edges = list(map(int, input().split()))
 for i in range(E):
     s, e = edges[2*i], edges[2*i+1]
     adj[s][e] = 1
-    adj[e][s] = 1
 
 #인정행렬 확인용
 for i in range(V+1):
