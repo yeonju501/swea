@@ -1,35 +1,52 @@
 import sys
 sys.stdin = open('1974_input.txt')
 
+
+def width_check(arr, x):
+    sdoku2 = []
+    for j in range(9):
+        if arr[x][j] in sdoku2:
+            return 0
+        sdoku2.append(arr[x][j])
+    return 1
+
+
+def height_check(arr, y):
+    sdoku = []
+    for j in range(9):
+        if arr[j][y] in sdoku:
+            return 0
+        sdoku.append(arr[j][y])
+    return 1
+
+def square_check(arr, x, y):
+    sdoku3 = []
+    for i in range(x-3, x):
+        for j in range(y-3, y):
+            if arr[i][j] in sdoku3:
+                return 0
+            sdoku3.append(arr[i][j])
+    for s in range(x-3, x):
+        if width_check(arr, s):
+            for l in range(y-3, y):
+                if height_check(arr, l):
+                    return 1
+    else:
+        return 0
+
 T = int(input())
 for tc in range(1, T+1):
     print('#{}'.format(tc), end=' ')
-    arr = [list(map(int, input().split())) for _ in range(9)]
-    i = j = s = 0
-    ans = 0
-    sdoku = [0]*10
-    sdoku_idx = []
-    while s < 8:
-        if len(sdoku) == 9 or arr[i][j] in sdoku:
-            if len(sdoku) == 9:
-                sdoku_idx.append(s)
-            s += 1
-            i = (s // 3) * 3  # 0 1 2
-            j = (s % 3) * 3  #
-            sdoku = []
-        sdoku.append(arr[i][j])
-        j += 1
-        if j % 3 == 0:
-            j = (s % 3) * 3
-            i += 1
-    print(sdoku_idx)
-    for i in range(9):
-        for j in range(9):
-            sdoku[arr[i][j]] += 1
-            sdoku[arr[j][i]] += 1
-        else:
-            if arr[i][0] < 3
-    print(ans)
+    a = [list(map(int, input().split())) for _ in range(9)]
+    flag = 0
+    for i in range(3, 10, 3):
+        for j in range(3, 10, 3):
+            if square_check(a, i, j):
+                flag = 1
+                break
+    print(flag)
+
+
 
 
 
