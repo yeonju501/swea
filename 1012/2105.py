@@ -8,11 +8,13 @@ sys.stdin = open('2105_input.txt')
 
 def dfs(i, j, x, y, dir, cnt):
     global ans
-    if dir == 3:
+    dx = [1, 1, -1, -1]  # 우하, 좌하, 우상, 좌상
+    dy = [1, -1, -1, 1]
+    if dir == 4:
         if i == x and j == y:
             if cnt > ans:
                 ans = cnt
-                return ans
+        return
     if 0 <= i < N and 0 <= j < N and not visited[i][j] and not used[arr[i][j]]:
         used[arr[i][j]] = 1
         visited[i][j] = 1
@@ -20,22 +22,17 @@ def dfs(i, j, x, y, dir, cnt):
         dfs(i + dx[dir], j + dy[dir], x, y, dir+1, cnt+1)
         visited[i][j] = 0
         used[arr[i][j]] = 0
-    else:
-        return
-
 
 for tc in range(1, int(input())+1):
     N = int(input())
     arr = [list(map(int,input().split())) for _ in range(N)]
-    dx = [1, 1, -1, -1] # 우하, 좌하, 우상, 좌상
-    dy = [1, -1, -1, 1]
-    # 꺾었던 쪽으로는 꺾게 한다
     used = [0] * (N*N+1)
-    print(used)
     visited = [[0] * N for _ in range(N)]
     ans = 0
     for i in range(N):
         for j in range(N):
             dfs(i, j, i, j, 0, 0)
-
-    print(ans)
+    if ans:
+        print('#{} {}'.format(tc,ans))
+    else:
+        print('#{} {}'.format(tc, -1))
